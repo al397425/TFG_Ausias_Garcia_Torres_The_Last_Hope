@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
+    [SerializeField] private GameObject cube;
+    private Animator animator;
     public float moveSpeed;
     public float walkSpeed;
     public float sprintSpeed;
@@ -33,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
         air
     }
     private void Start(){
+        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
     }
@@ -40,6 +43,14 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         
+        if (Input.GetMouseButtonDown(0)){
+            //Debug.Log("click");
+            animator.SetBool("IsAttacking", true);
+            cube.SetActive(true);
+                }
+            else  cube.SetActive(false);
+            animator.SetBool("IsAttacking", false);
+
         // ground check
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
 
@@ -90,6 +101,49 @@ public class PlayerMovement : MonoBehaviour
     {
         // calculate movement direction
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        
+        if(verticalInput == 0){
+            
+            animator.SetBool("IsWalkingFWD", false);
+            animator.SetBool("IsWalkingBWD", false);
+
+        }else if (verticalInput == 1){
+            
+            animator.SetBool("IsWalkingFWD", true);
+            
+
+        }else if (verticalInput == -1){
+            
+            animator.SetBool("IsWalkingBWD", true);
+
+        }
+        if(horizontalInput == 0){
+            
+            animator.SetBool("IsWalkingRight", false);
+            animator.SetBool("IsWalkingLeft", false);
+
+        }else if (horizontalInput == 1){
+            
+            animator.SetBool("IsWalkingRight", true);
+
+        }else if (horizontalInput == -1){
+            
+            animator.SetBool("IsWalkingLeft", true);
+            
+        }
+
+        
+        if(moveDirection.Equals(Vector3.zero)){
+            /*animator.SetBool("IsWalkingFWD", false);
+            animator.SetBool("IsWalkingBWD", false);
+            animator.SetBool("IsWalkingRight", false);
+            animator.SetBool("IsWalkingLeft", false);*/
+        }else{
+            /*animator.SetBool("IsWalkingFWD", true);
+            animator.SetBool("IsWalkingBWD", true);
+            animator.SetBool("IsWalkingRight", true);
+            animator.SetBool("IsWalkingLeft", true);*/
+        }
 
         rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
     }

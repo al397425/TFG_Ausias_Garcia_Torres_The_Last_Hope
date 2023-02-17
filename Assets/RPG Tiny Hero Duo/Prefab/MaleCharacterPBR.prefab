@@ -2428,6 +2428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf517c8d0b0c71a4d9297073e06bc54f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cube: {fileID: 0}
   moveSpeed: 10
   walkSpeed: 10
   sprintSpeed: 15
