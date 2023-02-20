@@ -32,7 +32,7 @@ public class CharMovement : MonoBehaviour
         movementDirection.Normalize();
 
         transform.Translate(movementDirection * speed * Time.deltaTime, Space.World);
-        AnimationWalk();
+        AnimationWalk();    
         
 
     if(movementDirection != Vector3.zero)
@@ -46,11 +46,12 @@ public class CharMovement : MonoBehaviour
 
     if (Input.GetMouseButtonDown(0)){
             //Debug.Log("click");
-            animator.SetBool("IsAttacking", true);
+            animator.SetBool("IsRolling", true);
             cube.SetActive(true);
                 }
-            else  cube.SetActive(false);
-            animator.SetBool("IsAttacking", false);
+            else{  cube.SetActive(false);
+            animator.SetBool("IsRolling", false);
+    }
     //
     }
     public void AnimationWalk()
@@ -58,9 +59,23 @@ public class CharMovement : MonoBehaviour
         if(verticalInput == 0){
             animator.SetBool("IsWalkingFWD", false);
             animator.SetBool("IsWalkingBWD", false);
+    
 
         }else if (verticalInput == 1){
             animator.SetBool("IsWalkingFWD", true);
+            //Attack + Walking
+
+            if (Input.GetMouseButtonDown(0)){
+                //Debug.Log("click");
+                animator.SetBool("IsWalkingFWD", false);
+                animator.SetBool("IsAttacking", true);
+                cube.SetActive(true);
+                }
+            else{  cube.SetActive(false);
+                animator.SetBool("IsAttacking", false);
+                animator.SetBool("IsWalkingFWD", true);
+            }
+
         }else if (verticalInput == -1){
             animator.SetBool("IsWalkingBWD", true);
         }
