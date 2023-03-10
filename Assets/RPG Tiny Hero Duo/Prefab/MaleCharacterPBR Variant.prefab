@@ -112,9 +112,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1431750274107009815, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2374217970370519529, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
+      propertyPath: m_Mass
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 2374217970370519529, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
       propertyPath: m_UseGravity
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2374217970370519529, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
+      propertyPath: m_Constraints
+      value: 126
       objectReference: {fileID: 0}
     - target: {fileID: 2374217970370519529, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
       propertyPath: m_Interpolate
@@ -256,8 +268,8 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8189980434977739222, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
   m_PrefabInstance: {fileID: 1315829827396539531}
   m_PrefabAsset: {fileID: 0}
---- !u!136 &559887026
-CapsuleCollider:
+--- !u!65 &8998300710569114432
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -266,10 +278,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.24
-  m_Height: 1.55
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.7603202, z: 0}
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.4558935, z: 1}
+  m_Center: {x: 0, y: 0.7505038, z: 0}
 --- !u!114 &559887030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,6 +295,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   rotationSpeed: 1000
+  swordEquipped: 1
+  rodEquipped: 0
   cube: {fileID: 695855844}
 --- !u!114 &1766977576029411527
 MonoBehaviour:
