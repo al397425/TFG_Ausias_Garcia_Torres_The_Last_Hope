@@ -2994,8 +2994,12 @@ PrefabInstance:
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 390735981729165610, guid: 6e0b868f172befa4ca5b268f7867de05, type: 3}
+      propertyPath: m_SlopeLimit
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 390735981729165610, guid: 6e0b868f172befa4ca5b268f7867de05, type: 3}
       propertyPath: m_StepOffset
-      value: 2
+      value: 0.001
       objectReference: {fileID: 0}
     - target: {fileID: 1324803109360130036, guid: 6e0b868f172befa4ca5b268f7867de05, type: 3}
       propertyPath: dodgeCurve.m_Curve.Array.size
