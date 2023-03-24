@@ -14,7 +14,7 @@ public class CharMovement : MonoBehaviour
     [SerializeField] public float speed = 5f;
     public float rotationSpeed;
     public bool swordEquipped = true;
-    public bool rodEquipped = false;
+    public bool rodEquipped = true;
     private CharacterController characterController;
     //Dodge Roll
     [SerializeField] AnimationCurve dodgeCurve;
@@ -25,7 +25,9 @@ public class CharMovement : MonoBehaviour
     //Atack collider
     [SerializeField] private GameObject cube;
     Collider CharCollider;
-
+    // Magic Shot
+    public GameObject prefabShot;
+    public GameObject positionShot;
     // Start is called before the first frame update
     void Start()
     {
@@ -102,18 +104,15 @@ public class CharMovement : MonoBehaviour
             //Debug.Log("click");
             //Attack
             cube.SetActive(true);
-                }
-            else{  cube.SetActive(false);
+                /*}
+            else{  cube.SetActive(false);*/
     }
     //Magic Shot
     if (Input.GetMouseButtonDown(0) && rodEquipped == true){
-            //Debug.Log("click");
+            Debug.Log("click Rod");
             
-            //instantite bullet
+            Instantiate(prefabShot, positionShot.transform.position, positionShot.transform.rotation);
 
-            //¿subrutine destroy bullet?
-                }
-            else{  
     }
     //Defend Mechanic
     /*if (Input.KeyCode.E ){
@@ -144,7 +143,7 @@ public class CharMovement : MonoBehaviour
     //Attack Animation
     public void AnimationAttack(){
     if (Input.GetMouseButtonDown(0)){
-            //Debug.Log("click");
+            
             animator.SetBool("IsAttacking", true);
             
                 }
@@ -163,7 +162,7 @@ public class CharMovement : MonoBehaviour
             //Attack + Walking
 
             /*if (Input.GetMouseButtonDown(0)){
-                //Debug.Log("click");
+                
                 animator.SetBool("IsWalkingFWD", false);
                 animator.SetBool("IsAttacking", true);
                 cube.SetActive(true);
@@ -182,7 +181,7 @@ public class CharMovement : MonoBehaviour
             animator.SetBool("IsWalkingLeft", false);
 
         }else if (horizontalInput == 1){
-            //Debug.Log("1 horizontal");
+            
             animator.SetBool("IsWalkingLeft", false);
             animator.SetBool("IsWalkingRight", true);
 
@@ -202,11 +201,11 @@ public class CharMovement : MonoBehaviour
             Vector3 dir = (transform.forward * speed) /*+ (Vector3.up * velocityY)*/; //adding direction and gravity
             characterController.Move(dir * Time.deltaTime);
             timer += Time.deltaTime;
-            Debug.Log("in while");
+            //Debug.Log("in while");
             yield return null;
         }
         animator.SetBool("IsRolling", false);
-        Debug.Log("exit while");
+        //Debug.Log("exit while");
         isDodging = false;
         characterController.center = new Vector3(0, 0.71f, 0);
         characterController.height = 1.48f;

@@ -7,6 +7,7 @@ TagManager:
   - SwordCollider
   - enemy
   - enemies
+  - Shot
   layers:
   - Default
   - TransparentFX

@@ -22,7 +22,7 @@ public class TriggerSlide : MonoBehaviour
         if(controller != null)
         {
              Vector3 forward = transform.TransformDirection(Vector3.forward);
-        controller.SimpleMove( forward  * slideSpeed * Time.deltaTime); 
+        controller.SimpleMove( forward  * slideSpeed * Time.deltaTime   ); 
         }
     }
 }
