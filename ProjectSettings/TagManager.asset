@@ -8,6 +8,7 @@ TagManager:
   - enemy
   - enemies
   - Shot
+  - activateLever
   layers:
   - Default
   - TransparentFX
