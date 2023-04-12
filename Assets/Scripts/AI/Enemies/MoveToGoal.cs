@@ -15,10 +15,12 @@ public class MoveToGoal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Vector3.Distance(new Vector3(Goal.position.x, 0, Goal.position.z), transform.position) >= SpaceBetween);
-        
+        if(Vector3.Distance(new Vector3(Goal.position.x, 0, Goal.position.z), transform.position) >= SpaceBetween)
+        {
         Vector3 direction = new Vector3(Goal.position.x-1, 0, Goal.position.z-1) - new Vector3(transform.position.x, 0, transform.position.z);
         //Debug.Log(direction);
         transform.Translate(direction * Time.deltaTime);
+
+        }
     }
 }

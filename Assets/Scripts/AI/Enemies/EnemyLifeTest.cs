@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyLifeTest : MonoBehaviour
 {
     [SerializeField] private int life = 1;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +16,7 @@ public class EnemyLifeTest : MonoBehaviour
     void Update()
     {
         if(life <= 0){
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
         
     }

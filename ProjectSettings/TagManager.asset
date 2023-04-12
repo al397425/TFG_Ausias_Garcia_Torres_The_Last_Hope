@@ -9,6 +9,10 @@ TagManager:
   - enemies
   - Shot
   - activateLever
+  - enemyWeapon
+  - TriggerRCentro
+  - TriggerRIzquierda
+  - TriggerRDerecha
   layers:
   - Default
   - TransparentFX

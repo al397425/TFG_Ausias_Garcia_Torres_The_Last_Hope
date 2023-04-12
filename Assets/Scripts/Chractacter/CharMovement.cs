@@ -28,6 +28,8 @@ public class CharMovement : MonoBehaviour
     // Magic Shot
     public GameObject prefabShot;
     public GameObject positionShot;
+    //Respawn
+    [SerializeField] private Transform playerT;
     // Start is called before the first frame update
     void Start()
     {
@@ -210,5 +212,20 @@ public class CharMovement : MonoBehaviour
         characterController.center = new Vector3(0, 0.71f, 0);
         characterController.height = 1.48f;
     }
-    
+    void OnTriggerEnter(Collider other) {
+        if (other.gameObject.CompareTag("TriggerRCentro")) {
+            playerT.position = new Vector3(10.0f, 0.55f, -7.2f);
+            
+        }
+
+        if (other.gameObject.CompareTag("TriggerRDerecha")) {
+            playerT.position = new Vector3(58.2f, 0.55f, -31.7f); 
+            
+        }
+
+        if (other.gameObject.CompareTag("TriggerRIzquierda")) {
+            playerT.position = new Vector3(-43.9f, 0.55f, -3.4f);
+            
+        }
+    }
 }

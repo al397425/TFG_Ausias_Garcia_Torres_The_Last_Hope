@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SwitchSystem : MonoBehaviour
 {
-    //public bool ResetButtonOrderOnFailure = true;
+
     [SerializeField] private GameObject Cube1;
     [SerializeField] private GameObject Cube2;
     [SerializeField] private GameObject Cube3;
@@ -12,8 +12,6 @@ public class SwitchSystem : MonoBehaviour
     [SerializeField] private GameObject Cube5;
     int counter = 0;
     string numbertext = "";
-
-    //private Stack<string> _buttonOrder = new Stack<string>();
 
     public LeverSystem leverSystem1;
     public LeverSystem leverSystem2;
@@ -27,32 +25,19 @@ public class SwitchSystem : MonoBehaviour
     private bool flag4 = false; 
     private bool flag5 = false;
     //2 4 5 1 3
-    /*static var solution : int[] = [2, 4, 5, 1, 3];
-    private static var input : int[] = [-1, -1, -1, -1, -1];*/
-    /*public string first;
-    public string second;
-    public string third;
-    public string fourth;
-    public string five;*/
 
-    // Start is called before the first frame update
     void Start()
     {
-        //this.ResetButtonOrder();
         Debug.Log(leverSystem1.boolchecker);
-        /*Debug.Log(leverSystem2.boolchecker);
-        Debug.Log(leverSystem3.boolchecker);
-        Debug.Log(leverSystem4.boolchecker);
-        Debug.Log(leverSystem5.boolchecker);*/
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         GetVariables();
-        Debug.Log("counter" + counter);
+        //Debug.Log("counter" + counter);
         if(numbertext != "24513" && counter == 5){
-            numbertext = ""; //to clear;ç
+            numbertext = ""; //to clear;
             counter = 0;
             flag1 = false; leverSystem1.boolchecker = false; leverSystem1.flag = false;
             flag2 = false; leverSystem2.boolchecker = false; leverSystem2.flag = false;
@@ -61,21 +46,8 @@ public class SwitchSystem : MonoBehaviour
             flag5 = false; leverSystem5.boolchecker = false; leverSystem5.flag = false;
         }else if(numbertext == "24513" && counter == 5){
 
-            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+            Debug.Log("Spawn Chest");
+            
         }
     }
     /*private void ResetButtonOrder()
@@ -122,123 +94,57 @@ public class SwitchSystem : MonoBehaviour
             }
         }
     }
-
-    /*void Check()
-    {
-        //2 4 5 1 3
-        if(first =="2" 
-        && second == "4"
-        && third == "5"
-        && fourth =="1"
-        && five == "3"){
-            //Solved
-            //enable gameobject Chest
-        }else{
-            //Unsolve
-            first = "";
-            second = "";
-            third = "";
-            fourth = "";
-            five = "";
-            //reset lever
-        }
-    }*/
+*/
     void GetVariables(){
         
-        //lets say that the button order has to do with XBOX controller inputs
-        //and you have those inputs configured as the specified names in the input manager
-       
+
         if(leverSystem1.boolchecker == true && flag1 == false)
         {
-            /*this.OnButtonPressed("1");
-            Debug.Log("quitado1");
-            counter++;*/
+
             int number1 = 1;  
             
             numbertext = numbertext+ number1.ToString(); //to add number  
             Debug.Log("blabla: "+numbertext); //to combine
             flag1 = true;
             counter++;  
-              
-        /*}else{
-            counter = 0;
-            leverSystem1.boolchecker = false;*/
         }
 
         if(leverSystem2.boolchecker == true && flag2 == false)
         {
             int number2 = 2;  
-            
             numbertext = numbertext+ number2.ToString(); //to add number  
             Debug.Log("blabla: "+numbertext); //to combine
             flag2 = true;
             counter++;
-            /*this.OnButtonPressed("2");
-            Debug.Log("quitado2");
-            counter++;
-        }else if(counter == 5){
-            counter = 0;
-            leverSystem1.boolchecker = false;*/
         }
 
         if(leverSystem3.boolchecker == true && flag3 == false)
         {
             int number3 = 3;  
-            
             numbertext = numbertext+ number3.ToString(); //to add number  
             Debug.Log("blabla: "+numbertext); //to combine
             flag3 = true;
             counter++;
-            /*this.OnButtonPressed("3");
-            Debug.Log("quitado3");
-            counter++;
-        }else{
-            counter = 0;
-            leverSystem1.boolchecker = false;*/
         } 
 
         if(leverSystem4.boolchecker == true && flag4 == false)
         {
             int number4 = 4;  
-            
             numbertext = numbertext+ number4.ToString(); //to add number  
             Debug.Log("blabla: "+numbertext); //to combine
             flag4 = true;
             counter++;
-            /*this.OnButtonPressed("4");
-            Debug.Log("quitado4");
-            counter++;
-        }else{
-            counter = 0;
-            leverSystem1.boolchecker = false;*/
         } 
 
         if(leverSystem5.boolchecker == true && flag5 == false)
         {
             int number5 = 5;  
-            
             numbertext = numbertext+ number5.ToString(); //to add number  
             Debug.Log("blabla: "+numbertext); //to combine
             flag5 = true;
             counter++;
-            /*this.OnButtonPressed("5");
-            Debug.Log("quitado5");
-            counter++;
-        }else{
-            counter = 0;
-            leverSystem1.boolchecker = false;*/
         } 
     }
-    /*void Combinaciones(){
-        if(leverSystem2.boolchecker == true &&
-        leverSystem1.boolchecker == false ||
-        leverSystem3.boolchecker == false ||
-        leverSystem4.boolchecker == false ||
-        leverSystem5.boolchecker == false){
-            Debug.Log("Correcto");
-        }else if(){
 
-        }
-    }*/
 }
 

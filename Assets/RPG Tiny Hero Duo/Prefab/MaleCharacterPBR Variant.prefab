@@ -53,6 +53,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 9114028184683391, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
+      propertyPath: playerT
+      value: 
+      objectReference: {fileID: 7539504325976563687}
+    - target: {fileID: 9114028184683391, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
       propertyPath: prefabShot
       value: 
       objectReference: {fileID: 4434771436496221930, guid: 7d306c5ae0fc9b34e8d057c6be25d82c, type: 3}
@@ -75,6 +79,18 @@ PrefabInstance:
     - target: {fileID: 1431750274107009815, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1670527666030880161, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
+      propertyPath: m_Height
+      value: 0.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 1670527666030880161, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
+      propertyPath: m_Radius
+      value: 0.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1670527666030880161, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
+      propertyPath: m_StepOffset
+      value: 0.39
       objectReference: {fileID: 0}
     - target: {fileID: 2855922900249034057, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
       propertyPath: m_RootOrder
