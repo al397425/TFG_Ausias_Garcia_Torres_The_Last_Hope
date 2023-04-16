@@ -7,10 +7,12 @@ public class Enemy_Range : MonoBehaviour
     public Animator anim;
     public AIMovement enemy;
 
-    void OnTriggerEnter(Collider coll)
-    {
-        if(coll.CompareTag("Player"))
+    
+     void OnCollisionEnter(Collision collision){
+        
+         if (collision.gameObject.tag == "Player")
         {
+            Debug.Log("pipo");
             //if(!enemy.stunned)
             //{
                 anim.SetBool("IsWalking",false);

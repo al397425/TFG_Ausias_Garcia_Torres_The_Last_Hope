@@ -802,15 +802,17 @@ GameObject:
   m_Component:
   - component: {fileID: 4906828391645816}
   - component: {fileID: 95237074988894122}
-  - component: {fileID: 8583048382030346620}
   - component: {fileID: 6449672886500789840}
   - component: {fileID: 2978234948782026219}
   - component: {fileID: 2302811402323995218}
+  - component: {fileID: 5493282031938082886}
   - component: {fileID: 7175612849621566959}
   - component: {fileID: 6624184889723799378}
   - component: {fileID: 8891032825935877234}
   - component: {fileID: 3777823266608282770}
-  m_Layer: 0
+  - component: {fileID: 4249541975120205372}
+  - component: {fileID: 5611790071449235938}
+  m_Layer: 6
   m_Name: TurtleShellPBR
   m_TagString: enemy
   m_Icon: {fileID: 0}
@@ -857,32 +859,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &8583048382030346620
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1774625739149480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af81279898b90c64a81aa78796e929a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  patrolSwitch: 4
-  timer: 4
-  anim: {fileID: 95237074988894122}
-  angulo: {x: 0, y: 0, z: 0, w: 0}
-  grado: 0
-  enemy_Collider: {fileID: 6868900110979294975}
-  target: {fileID: 0}
-  attacking: 0
-  range: {fileID: 8927382796490906303}
-  agentobs: {fileID: 3777823266608282770}
-  agent: {fileID: 6624184889723799378}
-  distance_Attack: 1
-  range_vision: 8
-  speed: 1
 --- !u!114 &6449672886500789840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -926,6 +902,36 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 1
+--- !u!114 &5493282031938082886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774625739149480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af81279898b90c64a81aa78796e929a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  patrolSwitch: 0
+  timer: 0
+  anim: {fileID: 95237074988894122}
+  angulo: {x: 0, y: 0, z: 0, w: 0}
+  grado: 0
+  enemy_Collider: {fileID: 5611790071449235938}
+  target: {fileID: 0}
+  attacking: 0
+  agentobs: {fileID: 3777823266608282770}
+  agent: {fileID: 6624184889723799378}
+  distance_Attack: 0
+  range_vision: 5
+  speed: 5
+  BoxCollider: {fileID: 4249541975120205372}
+  Monster:
+    serializedVersion: 2
+    m_Bits: 0
+  alertArea: 0
 --- !u!114 &7175612849621566959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -991,6 +997,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CarvingTime: 0.5
   CarvingMoveThreshold: 0.1
+--- !u!65 &4249541975120205372
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774625739149480}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.5, z: 0.78}
+--- !u!65 &5611790071449235938
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774625739149480}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &1822049695589022
 GameObject:
   m_ObjectHideFlags: 0
@@ -1290,7 +1322,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6554698714557595901
 Transform:
   m_ObjectHideFlags: 0
@@ -1299,7 +1331,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1921410325927258866}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.39, z: 0.373}
+  m_LocalPosition: {x: 0, y: 0.39, z: 0.435}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1319,7 +1351,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 95237074988894122}
-  enemy: {fileID: 8583048382030346620}
+  enemy: {fileID: 0}
 --- !u!65 &4859213309995842470
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1408,7 +1440,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &762326062231333831
 Transform:
   m_ObjectHideFlags: 0

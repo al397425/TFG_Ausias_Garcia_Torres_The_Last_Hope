@@ -14,14 +14,14 @@ public class AIMovement : MonoBehaviour
     public float grado;
     [SerializeField] Collider enemy_Collider;
     
-    //Detect Player
+    [Header("Detect Player")]
     public   GameObject target;
     public bool attacking;
 
-    //Player in Range
-    public Enemy_Range range;
+    [Header("Player In Range")]
+    //public Enemy_Range range;
     
-    //NavMesh
+    [Header("NavMesh")]
     public ObstacleAgent agentobs;
     public NavMeshAgent agent;
     public float distance_Attack;
@@ -30,6 +30,15 @@ public class AIMovement : MonoBehaviour
     Vector3 RandomPoint;
     bool reached = false;
     float dist;
+    [SerializeField] Collider BoxCollider;
+
+
+    [Header("Alert")]
+    Collider[] MonsterInsideZone;
+    public LayerMask Monster;
+    public float alertArea;
+
+
     void Start()
     {
         
@@ -39,7 +48,7 @@ public class AIMovement : MonoBehaviour
         target = GameObject.Find("Player");
 
         //get collider damage
-        Collider enemy_Collider = GetComponent<Collider>();
+        //Collider enemy_Collider = GetComponent<Collider>();
 
         dist=agent.remainingDistance;
         Debug.Log("AAAAAAAAAAA" + dist);
@@ -49,14 +58,12 @@ public class AIMovement : MonoBehaviour
         {
             agentobs = GetComponent<ObstacleAgent>();
         }
-    
-    
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         
         Enemy_behaviour();
+        Debug.Log("AAAEstado"+ attacking);
         
     }
     public void Enemy_behaviour(){
@@ -83,7 +90,7 @@ public class AIMovement : MonoBehaviour
                         break;
                 case 2:
                         
-                        dist=agent.remainingDistance;
+                        //dist=agent.remainingDistance;
                         if (dist!= Mathf.Infinity && agent.pathStatus==NavMeshPathStatus.PathComplete && agent.remainingDistance==0){
                             NavMeshPath path = new NavMeshPath();
                             //Arrived.
@@ -129,8 +136,8 @@ public class AIMovement : MonoBehaviour
                     anim.SetBool("IsRunning", true);
                 }
             }
-            /*
-            if(Vector3.Distance(transform.position, target.transform.position) > 1 && !attacking )
+            
+            /*if(Vector3.Distance(transform.position, target.transform.position) > 1 && !attacking )
             {
             transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, 2);
             anim.SetBool("IsWalking", false);
@@ -167,7 +174,40 @@ public class AIMovement : MonoBehaviour
         
         attacking = false;
         enemy_Collider.enabled = false;
-        range.GetComponent<CapsuleCollider>().enabled = true;
+        BoxCollider.enabled = true;
+        //range.GetComponent<CapsuleCollider>().enabled = true;
     }
+    void OnCollisionEnter(Collision collision){
+        
+         if (collision.gameObject.tag == "Player")
+        {
+            Debug.Log("pipo");
+            //if(!enemy.stunned)
+            //{
+                anim.SetBool("IsWalking",false);
+                anim.SetBool("IsRunning",false);
+                anim.SetBool("IsAttacking",true);
+                attacking = true;
+                BoxCollider.enabled = false;
+            //}
+        }
 
+}
+public void alert(Collider waypointDestination){
+             
+        MonsterInsideZone = Physics.OverlapSphere(transform.position, 3000.0f, Monster);
+        Debug.Log("BBBBB"+ MonsterInsideZone);
+        if(MonsterInsideZone.Length >= 1)
+        {
+            foreach (var monster in MonsterInsideZone)
+            {
+
+                var movement = monster.GetComponent<AIMovement>();
+                //var theirState = ghost.GetComponent<StateMachine>();
+                //if(movement != null) movement.setDestinationWaypoint(waypointDestination);
+                //theirState.SetState("alert");
+                movement.attacking = true;
+            }
+        }
+    }
 }
