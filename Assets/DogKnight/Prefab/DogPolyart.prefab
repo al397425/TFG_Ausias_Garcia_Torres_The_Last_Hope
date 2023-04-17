@@ -1266,6 +1266,7 @@ GameObject:
   - component: {fileID: 1602657556244521446}
   - component: {fileID: 457828233829585240}
   - component: {fileID: 4489635788213963691}
+  - component: {fileID: 9197843946749093520}
   m_Layer: 0
   m_Name: DogPolyart
   m_TagString: Untagged
@@ -1383,12 +1384,16 @@ MonoBehaviour:
   enemy_Collider: {fileID: 4489635788213963691}
   target: {fileID: 0}
   attacking: 0
-  range: {fileID: 1527070486723831551}
   agentobs: {fileID: 5064042403313962324}
   agent: {fileID: 1482077381564219817}
   distance_Attack: 0
   range_vision: 0
   speed: 0
+  BoxCollider: {fileID: 9197843946749093520}
+  Monster:
+    serializedVersion: 2
+    m_Bits: 0
+  alertArea: 0
 --- !u!54 &457828233829585240
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1418,6 +1423,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.3690948, z: 1}
   m_Center: {x: 0, y: 0.68067443, z: 0}
+--- !u!65 &9197843946749093520
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2066896392038628118}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.5, z: 0.5}
 --- !u!1 &2066896392038628120
 GameObject:
   m_ObjectHideFlags: 0
@@ -2515,7 +2533,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4644124261604241993
 Transform:
   m_ObjectHideFlags: 0
