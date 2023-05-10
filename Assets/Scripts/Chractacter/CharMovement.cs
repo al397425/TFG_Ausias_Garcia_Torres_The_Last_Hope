@@ -228,4 +228,9 @@ public class CharMovement : MonoBehaviour
             
         }
     }
+    private void Awake() 
+        {
+            Application.targetFrameRate = 50;
+        }
+    
 }

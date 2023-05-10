@@ -10,28 +10,31 @@ public class SwitchSystem : MonoBehaviour
     [SerializeField] private GameObject Cube3;
     [SerializeField] private GameObject Cube4;
     [SerializeField] private GameObject Cube5;
+    [SerializeField] private GameObject Chest;
     int counter = 0;
     string numbertext = "";
 
-    public LeverSystem leverSystem1;
-    public LeverSystem leverSystem2;
-    public LeverSystem leverSystem3;
-    public LeverSystem leverSystem4;
-    public LeverSystem leverSystem5;
+    [SerializeField] private LeverSystem leverSystem1;
+    [SerializeField] private LeverSystem leverSystem2;
+    [SerializeField] private LeverSystem leverSystem3;
+    [SerializeField] private LeverSystem leverSystem4;
+    [SerializeField] private LeverSystem leverSystem5;
     public bool resetflag = false;
     private bool flag1 = false; 
     private bool flag2 = false; 
     private bool flag3 = false; 
     private bool flag4 = false; 
     private bool flag5 = false;
+    private bool flagCompleted = false;
     //2 4 5 1 3
 
+    //Audio
+    AudioSource audioData;
     void Start()
     {
         Debug.Log(leverSystem1.boolchecker);
+        audioData = GetComponent<AudioSource>();
     }
-
-
     void Update()
     {
         GetVariables();
@@ -44,9 +47,11 @@ public class SwitchSystem : MonoBehaviour
             flag3 = false; leverSystem3.boolchecker = false; leverSystem3.flag = false;
             flag4 = false; leverSystem4.boolchecker = false; leverSystem4.flag = false;
             flag5 = false; leverSystem5.boolchecker = false; leverSystem5.flag = false;
-        }else if(numbertext == "24513" && counter == 5){
+        }else if(numbertext == "24513" && counter == 5 && flagCompleted == false){
+            Chest.SetActive(true);
+            audioData.Play(0);
+            flagCompleted = true;
 
-            Debug.Log("Spawn Chest");
             
         }
     }
@@ -68,21 +73,7 @@ public class SwitchSystem : MonoBehaviour
             _buttonOrder.Pop();
             if(_buttonOrder.Count == 0)
             {
-                Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-                Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-                Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-                Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-                Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-                Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-                Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-                Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-                Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-                Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-                Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-                Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-                Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-                Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-                Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+
             }
         }
         else

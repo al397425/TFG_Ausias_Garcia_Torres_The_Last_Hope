@@ -1,11 +1,20 @@
 fileFormatVersion: 2
-guid: 3b799aff1e1d3c9428ec06f67d18510e
+guid: 09644e3c46afdcf428235bd8faaaa0a9
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
   - first:
+      74: -7040285308577612800
+    second: Activate
+  - first:
+      74: 1332891438966975290
+    second: ActiavteLever
+  - first:
       74: 8880667818450376214
     second: Deactivate
+  - first:
+      74: -540533479110336338
+    second: Armature|ActiavteLever
   - first:
       74: 2917318281195987965
     second: Armature|Activate
