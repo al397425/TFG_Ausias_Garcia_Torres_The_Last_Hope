@@ -17,42 +17,35 @@ public class LeverSystem : MonoBehaviour
         animator = GetComponent<Animator>();
     }
     void Update(){
-        if(switchSystem.resetflag == true){
-            //hacer animacion reset
+        if(switchSystem.resetflag == true){ //Desactiva
+            //Do Reset animation
             boolchecker = false;
             animator.SetBool("IsActivated", false);
             
         }
         
     }
-    
     public void OnTriggerEnter(Collider other ){
 
-        if(other.gameObject.tag == "activateLever"){
-            Debug.Log("Ha colisionado y ha activado la palanca");
+        if(other.gameObject.tag == "activateLever"){ //Activated
             if(flag == false){
                 if(flagAudio == false){
                     audioData.Play(0);
                     flagAudio = true;
                 }
-                
                 animator.SetBool("IsActivated", true);
-               //hacer animacion activar
+               //Do Activate Animation
                 boolchecker = true;
                 flag = true; 
             }
-
             if(flag == true){
                     audioData.Play(0);
                     flagAudio = true;
                 }
-            /*//hacer animacion activar
-            */
+            //Do Activate Animation
         }
-        
     }
     public void OnTriggerExit(Collider other) {
         flagAudio = false;
-
     }
 }

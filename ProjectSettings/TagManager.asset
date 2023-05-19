@@ -13,6 +13,9 @@ TagManager:
   - TriggerRCentro
   - TriggerRIzquierda
   - TriggerRDerecha
+  - Sign1
+  - Sign2
+  - Sign3
   layers:
   - Default
   - TransparentFX
@@ -22,8 +25,8 @@ TagManager:
   - UI
   - Monster
   - Post Processing
-  - 
-  - 
+  - Player
+  - Shot
   - 
   - 
   - 

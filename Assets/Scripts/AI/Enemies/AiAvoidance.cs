@@ -6,6 +6,7 @@ public class AiAvoidance : MonoBehaviour
 {
     GameObject[] enemiesArray;
     public float SpaceBetween = 1.0f;
+    public EnemyLifeTest EnemyLifeTest1;
     // Start is called before the first frame update
     void Start()
     {

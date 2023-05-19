@@ -5,20 +5,21 @@ using UnityEngine;
 public class SwitchSystem : MonoBehaviour
 {
 
-    [SerializeField] private GameObject Cube1;
+    /*[SerializeField] private GameObject Cube1;
     [SerializeField] private GameObject Cube2;
     [SerializeField] private GameObject Cube3;
     [SerializeField] private GameObject Cube4;
-    [SerializeField] private GameObject Cube5;
+    [SerializeField] private GameObject Cube5;*/
     [SerializeField] private GameObject Chest;
-    int counter = 0;
-    string numbertext = "";
+    
 
     [SerializeField] private LeverSystem leverSystem1;
     [SerializeField] private LeverSystem leverSystem2;
     [SerializeField] private LeverSystem leverSystem3;
     [SerializeField] private LeverSystem leverSystem4;
     [SerializeField] private LeverSystem leverSystem5;
+    int counter = 0;
+    string numbertext = "";
     public bool resetflag = false;
     private bool flag1 = false; 
     private bool flag2 = false; 
@@ -88,14 +89,11 @@ public class SwitchSystem : MonoBehaviour
 */
     void GetVariables(){
         
-
         if(leverSystem1.boolchecker == true && flag1 == false)
         {
-
             int number1 = 1;  
-            
             numbertext = numbertext+ number1.ToString(); //to add number  
-            Debug.Log("blabla: "+numbertext); //to combine
+            Debug.Log("blabla: "+numbertext); //to check combination
             flag1 = true;
             counter++;  
         }
@@ -104,7 +102,7 @@ public class SwitchSystem : MonoBehaviour
         {
             int number2 = 2;  
             numbertext = numbertext+ number2.ToString(); //to add number  
-            Debug.Log("blabla: "+numbertext); //to combine
+            Debug.Log("blabla: "+numbertext); //to check combination
             flag2 = true;
             counter++;
         }
@@ -113,7 +111,7 @@ public class SwitchSystem : MonoBehaviour
         {
             int number3 = 3;  
             numbertext = numbertext+ number3.ToString(); //to add number  
-            Debug.Log("blabla: "+numbertext); //to combine
+            Debug.Log("blabla: "+numbertext); //to check combination
             flag3 = true;
             counter++;
         } 
@@ -122,7 +120,7 @@ public class SwitchSystem : MonoBehaviour
         {
             int number4 = 4;  
             numbertext = numbertext+ number4.ToString(); //to add number  
-            Debug.Log("blabla: "+numbertext); //to combine
+            Debug.Log("blabla: "+numbertext); //to check combination
             flag4 = true;
             counter++;
         } 
@@ -131,7 +129,7 @@ public class SwitchSystem : MonoBehaviour
         {
             int number5 = 5;  
             numbertext = numbertext+ number5.ToString(); //to add number  
-            Debug.Log("blabla: "+numbertext); //to combine
+            Debug.Log("blabla: "+numbertext); //to check combination
             flag5 = true;
             counter++;
         } 

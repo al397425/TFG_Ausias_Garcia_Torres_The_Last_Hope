@@ -42,7 +42,7 @@ public class SwitchBridge : MonoBehaviour
     void FixedUpdate(){
         if(flag ==true){
             Vector3 direction = new Vector3(Goal.position.x, 0, Goal.position.z) - new Vector3(Bridge.transform.position.x, 0, Bridge.transform.position.z);
-            Bridge.transform.Translate(direction * Time.deltaTime/3);
+            Bridge.transform.Translate(direction * Time.deltaTime*0.9f);
         }
     }
     private void OnCollisionEnter(Collision other) {
