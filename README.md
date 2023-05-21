@@ -10,3 +10,6 @@ Roll:
 Attack:
           Mouse Click
           
+Target nearby enemy:
+          Tab
+          
