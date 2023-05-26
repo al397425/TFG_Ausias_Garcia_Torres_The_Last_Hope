@@ -39,6 +39,7 @@ public class UIBars : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+      print(CharMovement.life+ "life");
          switch (CharMovement.life)
          {
          case 7:
@@ -49,7 +50,7 @@ public class UIBars : MonoBehaviour
             H5.SetActive(false);
             H6.SetActive(false);
             H7.SetActive(true);
-
+print(CharMovement.life+ "case");
             break;
          case 6:
             H1.SetActive(false);
@@ -59,6 +60,7 @@ public class UIBars : MonoBehaviour
             H5.SetActive(false);
             H7.SetActive(false);
             H6.SetActive(true);
+            print(CharMovement.life+ "case");
             break;
          case 5:
             H1.SetActive(false);
@@ -68,6 +70,7 @@ public class UIBars : MonoBehaviour
             H6.SetActive(false);
             H7.SetActive(false);
             H5.SetActive(true);
+            print(CharMovement.life+ "case");
             break;
          case 4:
             H1.SetActive(false);
@@ -77,6 +80,7 @@ public class UIBars : MonoBehaviour
             H6.SetActive(false);
             H7.SetActive(false);
             H4.SetActive(true);
+            print(CharMovement.life+ "case");
             break;
          case 3:
             H1.SetActive(false);
@@ -86,6 +90,7 @@ public class UIBars : MonoBehaviour
             H7.SetActive(false);
             H4.SetActive(false);
             H3.SetActive(true);
+            print(CharMovement.life+ "case");
             break;
          case 2:
             H1.SetActive(false);
@@ -95,6 +100,7 @@ public class UIBars : MonoBehaviour
             H6.SetActive(false);
             H7.SetActive(false);
             H2.SetActive(true);
+            print(CharMovement.life+ "case");
             break;
          case 1:
             
@@ -105,6 +111,7 @@ public class UIBars : MonoBehaviour
             H6.SetActive(false);
             H7.SetActive(false);
             H1.SetActive(true);
+            print(CharMovement.life+ "case");
             //reproducir animacion
             break;
          case 0:
@@ -116,6 +123,7 @@ public class UIBars : MonoBehaviour
             H6.SetActive(false);
             H7.SetActive(false);
             H1.SetActive(false);
+            print(CharMovement.life+ "case");
             break;
          default:
             break;

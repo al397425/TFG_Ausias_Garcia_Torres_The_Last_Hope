@@ -7,6 +7,7 @@ public class CharMovement : MonoBehaviour
     //solving gravity character controller
     private Vector3 velocity;
     //Z Targeting
+    [Header("Z Targeting")]
     Vector3 dir;
     Collider[] nearbyTargets;
     [SerializeField] int noticeZone = 10;
@@ -15,6 +16,7 @@ public class CharMovement : MonoBehaviour
     private bool courutineNotWaiting = false;
     GameObject TargetsObject;
     //movement and rotation
+    [Header("movement and rotation")]
     float horizontalInput;
     float verticalInput;
     Vector3 movementDirection;
@@ -24,24 +26,35 @@ public class CharMovement : MonoBehaviour
     public bool rodEquipped = true;
     private CharacterController characterController;
     //Dodge Roll
+    [Header("Dodge Roll")]
     [SerializeField] AnimationCurve dodgeCurve;
     bool isDodging;
     float dodgeTimer;
     //Animation
     private Animator animator;
     //Atack collider
+    [Header("Atack collider")]
     [SerializeField] private GameObject cube;
     Collider CharCollider;
     // Magic Shot
+    [Header("Magic Shot")]
     public GameObject prefabShot;
     public GameObject positionShot;
     //Respawn
+    [Header("Respawn")]
     [SerializeField] private Transform playerT;
 
     //Life Magic Bars
+    [Header("Life Magic Bars")]
     public int life = 7;
     public int magic = 7;
-    public int pipo = 0;
+    private bool invincibleEnabled = false;
+    [SerializeField]
+    private float invincCooldown = 3.0f;
+    //VignetteChange
+
+    private PostProcessManager PostProcessManager;
+
     void Start()
     {
         cube.SetActive(false);
@@ -50,6 +63,10 @@ public class CharMovement : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         Keyframe dodge_lastFrame = dodgeCurve[dodgeCurve.length - 1];
         dodgeTimer = dodge_lastFrame.time;
+        PostProcessManager = GameObject.Find("Post Processing").GetComponent<PostProcessManager>();
+        /*for(int j = 0; j<11;j++)
+        playerRenderer[j] = GetComponentInChildren<SkinnedMeshRenderer>();
+        print("Array" + playerRenderer);*/
     }
 
     void Update()
@@ -62,9 +79,8 @@ public class CharMovement : MonoBehaviour
                 TargetsObject.transform.Find("TargetUI").gameObject.SetActive(false);
             }
             else { StartCoroutine(TargetRoutine()); }
-        
         }
-        print("encima pipo_blocked_target = " + blockedtarget + pipo);
+
         //Movement
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
@@ -126,11 +142,10 @@ public class CharMovement : MonoBehaviour
                         Collider TargetCollider = nearbyTargets[0];
                         GameObject TargetsObject = TargetCollider.transform.gameObject;
                         if ((TargetsObject.transform.Find("TargetUI").gameObject.activeSelf) == false 
-                            /*&& UniqueTarget == false*//* && blockedtarget == false) {
+                            /* && blockedtarget == false) {
                             TargetsObject.transform.Find("TargetUI").gameObject.SetActive(true);
                             blockedtarget = true;
-                            //print("apretado pipo_blocked_target = " + blockedtarget + pipo);
-                            //UniqueTarget = true;
+                            //print("apretado pipo_blocked_target = " + blockedtarget);
                         }*/
 
             //}  
@@ -185,10 +200,10 @@ public class CharMovement : MonoBehaviour
                 Collider TargetCollider = nearbyTargets[0];
                 GameObject TargetsObject = TargetCollider.transform.gameObject;
                     if ((TargetsObject.transform.Find("TargetUI").gameObject.activeSelf) == false
-                    /*&& UniqueTarget == false*//*) {*/
+                    /*) {*/
                         /*TargetsObject.transform.Find("TargetUI").gameObject.SetActive(true);
                         blockedtarget = true;
-                        //UniqueTarget = true;
+                        
                     }
             }
         //}*/
@@ -286,6 +301,22 @@ public class CharMovement : MonoBehaviour
             animator.SetBool("IsWalkingLeft", true);
         }
     }
+
+    public void InvincEnabled()
+    {
+        invincibleEnabled = true;
+        StartCoroutine(InvincDisableRoutine());
+    }
+
+    IEnumerator InvincDisableRoutine()
+    {
+        //Blink Animation
+        
+        PostProcessManager.VignetteChange();
+        yield return new WaitForSeconds(invincCooldown);
+        invincibleEnabled = false;
+    }
+
     IEnumerator Dodge(){
         isDodging = true;
         animator.SetBool("IsRolling", true);
@@ -320,6 +351,19 @@ public class CharMovement : MonoBehaviour
             playerT.position = new Vector3(-43.9f, 0.55f, -3.4f);
         }
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("enemy"))
+        {
+
+            if (invincibleEnabled == false)
+            {
+                life--;
+            }
+            InvincEnabled();
+            
+        }
+    }
     private void Awake() 
         {
             //Fixed FPS to 50(?)
@@ -327,11 +371,7 @@ public class CharMovement : MonoBehaviour
         }
     IEnumerator TargetRoutine()
     {
-
-        //do stuff
             nearbyTargets = Physics.OverlapSphere(transform.position, noticeZone, LayerMaskTarget);
-            //for (int i = 0; i < nearbyTargets.Length; i++)
-            //{
             if (nearbyTargets[0] != null)
             {
                 dir = nearbyTargets[0].transform.position - playerT.position;
@@ -339,31 +379,21 @@ public class CharMovement : MonoBehaviour
                 Collider TargetCollider = nearbyTargets[0];
                 TargetsObject = TargetCollider.transform.gameObject;
                 if ((TargetsObject.transform.Find("TargetUI").gameObject.activeSelf) == false
-                        /*&& UniqueTarget == false*/ && blockedtarget == false) {
+                         && blockedtarget == false) {
                     TargetsObject.transform.Find("TargetUI").gameObject.SetActive(true);
                     blockedtarget = true;
-                    //print("apretado pipo_blocked_target = " + blockedtarget + pipo);
-                    //UniqueTarget = true;
                 }
-
             }  
                 /*Quaternion toRotation = Quaternion.LookRotation(dir, Vector3.up);
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation,360);
                 //}*/
                 //}else
                 //{
-                //wait for space to be pressed
-                
                 while (!Input.GetKeyDown(KeyCode.Tab))
                 {
                     yield return null;
                 }
                 //blockedtarget = false;
                 //TargetsObject.transform.Find("TargetUI").gameObject.SetActive(false);
-                //do stuff once space is pressed
-
-
-
-    }
-        
+    } 
     }
