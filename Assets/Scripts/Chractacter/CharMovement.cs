@@ -22,8 +22,8 @@ public class CharMovement : MonoBehaviour
     Vector3 movementDirection;
     [SerializeField] public float speed = 5f;
     public float rotationSpeed = 4;
-    public bool swordEquipped = true;
-    public bool rodEquipped = true;
+    public bool swordEquipped = false;
+    public bool rodEquipped = false;
     private CharacterController characterController;
     //Dodge Roll
     [Header("Dodge Roll")]
@@ -34,7 +34,7 @@ public class CharMovement : MonoBehaviour
     private Animator animator;
     //Atack collider
     [Header("Atack collider")]
-    [SerializeField] private GameObject cube;
+    [SerializeField] private GameObject SwordCollider;
     Collider CharCollider;
     // Magic Shot
     [Header("Magic Shot")]
@@ -57,7 +57,7 @@ public class CharMovement : MonoBehaviour
 
     void Start()
     {
-        cube.SetActive(false);
+        SwordCollider.SetActive(false);
         animator = GetComponent<Animator>();
         CharCollider = GetComponent<Collider>();
         characterController = GetComponent<CharacterController>();
@@ -71,6 +71,21 @@ public class CharMovement : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if(swordEquipped = true){
+                swordEquipped = false;
+                //change Icon to Sword
+                //change model to Sword
+                rodEquipped = true;
+            }
+            if(rodEquipped = true){
+                rodEquipped = false;
+                //change Icon to Rod
+                //change model to Rod
+                swordEquipped = false;
+            }
+        }
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             if (blockedtarget == true)
@@ -215,16 +230,24 @@ public class CharMovement : MonoBehaviour
     //Sword Attack
     if (Input.GetMouseButtonDown(0) && swordEquipped == true){
             //Attack
-            cube.SetActive(true);
+            SwordCollider.SetActive(true);
+            StartCoroutine(SwordAttack(0.5f));
+            SwordCollider.SetActive(false);
                 /*}
             else{  cube.SetActive(false);*/
     }
     //Magic Shot
     if (Input.GetMouseButtonDown(0) && rodEquipped == true){
+        if (magic > 0)
+            {
+                Debug.Log("Que pasa");
+                magic--;
+            
             GameObject gameObjectShot = (GameObject)
             Instantiate(prefabShot, positionShot.transform.position, positionShot.transform.rotation);
             gameObjectShot.layer = 9;//9 = layer Shot
-
+            StartCoroutine(WaitShot(1.5f));
+        }
     }
     //Defend Mechanic
     /*if (Input.KeyCode.E ){
@@ -276,9 +299,9 @@ public class CharMovement : MonoBehaviour
                 
                 animator.SetBool("IsWalkingFWD", false);
                 animator.SetBool("IsAttacking", true);
-                cube.SetActive(true);
+                SwordCollider.SetActive(true);
                 }
-            else{  cube.SetActive(false);
+            else{  SwordCollider.SetActive(false);
                 animator.SetBool("IsAttacking", false);
                 animator.SetBool("IsWalkingFWD", true);
             }*/
@@ -361,7 +384,6 @@ public class CharMovement : MonoBehaviour
                 life--;
             }
             InvincEnabled();
-            
         }
     }
     private void Awake() 
@@ -395,5 +417,14 @@ public class CharMovement : MonoBehaviour
                 }
                 //blockedtarget = false;
                 //TargetsObject.transform.Find("TargetUI").gameObject.SetActive(false);
-    } 
+    }
+
+    IEnumerator SwordAttack(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+    }
+    IEnumerator WaitShot(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+    }
     }
