@@ -7,6 +7,9 @@ using UnityEngine.AI;
 
 public class AIMovement : MonoBehaviour
 {
+    //enemy life
+    private int enemylife = 2;
+
     [SerializeField] private int patrolSwitch;
     [SerializeField] private float timer;
     [SerializeField] private Animator anim; 
@@ -41,8 +44,6 @@ public class AIMovement : MonoBehaviour
 
     void Start()
     {
-        
-        
         anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         target = GameObject.Find("Player");
@@ -61,15 +62,15 @@ public class AIMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        
         Enemy_behaviour();
-        Debug.Log("AAAEstado"+ attacking);
+        Debug.Log("AI Attacking?"+ attacking);
         
     }
     public void Enemy_behaviour(){
 
         if(Vector3.Distance(transform.position, target.transform.position) > range_vision)
         {
+            //the enemy didn't saw the player
             agentobs.enabled = false;
             anim.SetBool("IsRunning", false);
             timer += 1 * Time.deltaTime;
@@ -113,14 +114,15 @@ public class AIMovement : MonoBehaviour
                         break;
             }
         }
+        //all the code before the enemy didn't saw the player
         else
         {
+            //targeting and going to the player
             var lookPos = target.transform.position - transform.position;
             lookPos.y = 0;
             var rotation = Quaternion.LookRotation(lookPos);
             agentobs.enabled = true;
             agentobs.SetDestination(target.transform.position);
-            Debug.Log("Destination " + target.transform.position);
 
             if(Vector3.Distance(transform.position, target.transform.position) > distance_Attack && !attacking)
             {
@@ -179,9 +181,8 @@ public class AIMovement : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision){
         
-         if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("pipo");
             //if(!enemy.stunned)
             //{
                 anim.SetBool("IsWalking",false);
@@ -190,6 +191,18 @@ public class AIMovement : MonoBehaviour
                 attacking = true;
                 BoxCollider.enabled = false;
             //}
+        }
+        
+        if (collision.gameObject.tag == "SwordCollider")
+        {
+            
+                anim.SetBool("IsWalking",false);
+                anim.SetBool("IsRunning",false);
+                anim.SetBool("IsAttacking",false);
+                anim.SetBool("IsHitted",true);
+                BoxCollider.enabled = false;
+                
+                enemylife--;
         }
 
 }

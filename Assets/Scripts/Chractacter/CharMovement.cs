@@ -21,7 +21,7 @@ public class CharMovement : MonoBehaviour
     float verticalInput;
     Vector3 movementDirection;
     [SerializeField] public float speed = 5f;
-    public float rotationSpeed = 4;
+    public float rotationSpeed = 300;
     public bool swordEquipped = false;
     public bool rodEquipped = false;
     private CharacterController characterController;
@@ -32,6 +32,10 @@ public class CharMovement : MonoBehaviour
     float dodgeTimer;
     //Animation
     private Animator animator;
+    [Header("Interactuate With Things")]
+
+    [SerializeField] private GameObject Levercollider;
+
     //Atack collider
     [Header("Atack collider")]
     [SerializeField] private GameObject SwordCollider;
@@ -40,23 +44,26 @@ public class CharMovement : MonoBehaviour
     [Header("Magic Shot")]
     public GameObject prefabShot;
     public GameObject positionShot;
+    //Items Management
+    [Header("Items Management")]
+    public bool has2items = true;
     //Respawn
     [Header("Respawn")]
     [SerializeField] private Transform playerT;
 
     //Life Magic Bars
-    [Header("Life Magic Bars")]
     public int life = 7;
     public int magic = 7;
     private bool invincibleEnabled = false;
     [SerializeField]
     private float invincCooldown = 3.0f;
     //VignetteChange
-
+    
     private PostProcessManager PostProcessManager;
 
     void Start()
     {
+        Levercollider.SetActive(false);
         SwordCollider.SetActive(false);
         animator = GetComponent<Animator>();
         CharCollider = GetComponent<Collider>();
@@ -64,6 +71,8 @@ public class CharMovement : MonoBehaviour
         Keyframe dodge_lastFrame = dodgeCurve[dodgeCurve.length - 1];
         dodgeTimer = dodge_lastFrame.time;
         PostProcessManager = GameObject.Find("Post Processing").GetComponent<PostProcessManager>();
+
+        //material change when hited (unfnished)
         /*for(int j = 0; j<11;j++)
         playerRenderer[j] = GetComponentInChildren<SkinnedMeshRenderer>();
         print("Array" + playerRenderer);*/
@@ -71,19 +80,19 @@ public class CharMovement : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && has2items == true)
         {
-            if(swordEquipped = true){
+            if(swordEquipped == true){
                 swordEquipped = false;
                 //change Icon to Sword
                 //change model to Sword
                 rodEquipped = true;
-            }
-            if(rodEquipped = true){
+            }else
+             if(rodEquipped == true){
                 rodEquipped = false;
                 //change Icon to Rod
                 //change model to Rod
-                swordEquipped = false;
+                swordEquipped = true;
             }
         }
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -174,7 +183,7 @@ public class CharMovement : MonoBehaviour
             if (blockedtarget == false)
             {
                 Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rs * Time.deltaTime);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, 400 * Time.deltaTime);
             }
             else
             {
@@ -226,13 +235,18 @@ public class CharMovement : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation,360);
             }
         }*/
-
+    //Interactuate With Things
+    if (Input.GetKeyDown(KeyCode.Q))
+    {
+        Levercollider.SetActive(true);
+        StartCoroutine(WaitInteractuate(0.3f));
+    }
     //Sword Attack
     if (Input.GetMouseButtonDown(0) && swordEquipped == true){
             //Attack
+            Debug.Log("AESPADA");
             SwordCollider.SetActive(true);
             StartCoroutine(SwordAttack(0.5f));
-            SwordCollider.SetActive(false);
                 /*}
             else{  cube.SetActive(false);*/
     }
@@ -240,7 +254,6 @@ public class CharMovement : MonoBehaviour
     if (Input.GetMouseButtonDown(0) && rodEquipped == true){
         if (magic > 0)
             {
-                Debug.Log("Que pasa");
                 magic--;
             
             GameObject gameObjectShot = (GameObject)
@@ -378,14 +391,22 @@ public class CharMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("enemy"))
         {
-
             if (invincibleEnabled == false)
             {
                 life--;
             }
             InvincEnabled();
         }
+
     }
+    void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "PurplePlatform")
+        {
+            magic = 7;
+        }
+    }
+
     private void Awake() 
         {
             //Fixed FPS to 50(?)
@@ -422,9 +443,15 @@ public class CharMovement : MonoBehaviour
     IEnumerator SwordAttack(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
+        SwordCollider.SetActive(false);
     }
     IEnumerator WaitShot(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
+    }
+    IEnumerator WaitInteractuate(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        Levercollider.SetActive(false);
     }
     }

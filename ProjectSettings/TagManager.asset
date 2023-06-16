@@ -16,6 +16,7 @@ TagManager:
   - Sign1
   - Sign2
   - Sign3
+  - PurplePlatform
   layers:
   - Default
   - TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   - Post Processing
   - Player
   - Shot
-  - 
+  - Wall
   - 
   - 
   - 

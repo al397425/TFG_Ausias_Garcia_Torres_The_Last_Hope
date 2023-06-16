@@ -6,6 +6,8 @@ public class SwitchBridge : MonoBehaviour
 {
     public GameObject Bridge;
     public bool flag;
+    [SerializeField] private GameObject sphere;
+    Renderer Rendererswitch;
     /*private IEnumerator coroutine;
     // Start is called before the first frame update
     void Start()
@@ -37,7 +39,7 @@ public class SwitchBridge : MonoBehaviour
     public Transform Goal;
     void Start()
     {
-        
+        Rendererswitch = sphere.GetComponent<Renderer>();
     }
     void FixedUpdate(){
         if(flag ==true){
@@ -48,6 +50,7 @@ public class SwitchBridge : MonoBehaviour
     private void OnCollisionEnter(Collision other) {
         if(other.gameObject.tag == "Shot"){
             flag = true;
+            Rendererswitch.material.SetColor("_Color", Color.magenta);
         }
 }
 }
