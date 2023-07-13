@@ -12,4 +12,7 @@ Attack:
           
 Target nearby enemy:
           Tab
-          
+Interact/Open chest:
+          Q Key
+Change Weapon:
+          E Key
