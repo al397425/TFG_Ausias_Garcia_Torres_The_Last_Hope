@@ -17,6 +17,7 @@ TagManager:
   - Sign2
   - Sign3
   - PurplePlatform
+  - Heart
   layers:
   - Default
   - TransparentFX

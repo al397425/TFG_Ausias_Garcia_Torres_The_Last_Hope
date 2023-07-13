@@ -5,7 +5,8 @@ using UnityEngine;
 public class SwitchTimerManager : MonoBehaviour
 {
     [SerializeField] private GameObject Chest;
-    
+    public int counter;
+    public bool flagCompleted = false;
     [SerializeField] private SwitchTimerUnit switch1;
     [SerializeField] private SwitchTimerUnit switch2;
     [SerializeField] private SwitchTimerUnit switch3;
@@ -15,7 +16,7 @@ public class SwitchTimerManager : MonoBehaviour
     [SerializeField] private AudioSource audioSourceWin;
     [SerializeField] private AudioSource audioSourceError;
 
-    int counter = 0;
+    //int counter = 0;
     public bool resetflag = false;
     private bool flag1 = false; 
     private bool flag2 = false; 
@@ -23,7 +24,6 @@ public class SwitchTimerManager : MonoBehaviour
     private bool flag4 = false; 
     private bool flag5 = false;
     private bool flag6 = false;
-    private bool flagCompleted = false;
 
     //Audio
     void Start()
@@ -42,9 +42,10 @@ public class SwitchTimerManager : MonoBehaviour
         
         GetActiveSpheres();
         if(counter == 5 && flagCompleted == false){
-            Chest.SetActive(true);
+            Destroy(Chest);
+            /*Chest.SetActive(true);
             audioSourceWin.Play(0);
-            flagCompleted = true;
+            flagCompleted = true;*/
         }
     }
     void GetActiveSpheres(){
@@ -81,7 +82,7 @@ public class SwitchTimerManager : MonoBehaviour
     }
     IEnumerator Timer()
     {
-        yield return new WaitForSeconds(50);
+        yield return new WaitForSeconds(40);
         resetflag = true;
         counter = 0;
         switch1.boolchecker = false; flag1 = false; 

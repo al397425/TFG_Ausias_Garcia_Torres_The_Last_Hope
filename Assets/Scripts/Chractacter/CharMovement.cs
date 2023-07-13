@@ -61,6 +61,9 @@ public class CharMovement : MonoBehaviour
     
     private PostProcessManager PostProcessManager;
 
+    //open door
+    public bool havekeydoor = false;
+    
     void Start()
     {
         Levercollider.SetActive(false);
@@ -183,7 +186,7 @@ public class CharMovement : MonoBehaviour
             if (blockedtarget == false)
             {
                 Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, 400 * Time.deltaTime);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rs * Time.deltaTime);
             }
             else
             {
@@ -396,6 +399,11 @@ public class CharMovement : MonoBehaviour
                 life--;
             }
             InvincEnabled();
+        }
+
+        if (collision.gameObject.CompareTag("Heart"))
+        {
+                life++;
         }
 
     }

@@ -873,6 +873,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpaceBetween: 3
+  EnemyLifeTest1: {fileID: 0}
 --- !u!114 &2978234948782026219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -931,7 +932,7 @@ MonoBehaviour:
   BoxCollider: {fileID: 4249541975120205372}
   Monster:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   alertArea: 0
 --- !u!114 &7175612849621566959
 MonoBehaviour:
@@ -1352,7 +1353,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 95237074988894122}
-  enemy: {fileID: 0}
+  enemy: {fileID: 5493282031938082886}
 --- !u!65 &4859213309995842470
 BoxCollider:
   m_ObjectHideFlags: 0
