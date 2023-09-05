@@ -13,8 +13,9 @@ public class SpawnHeart : MonoBehaviour
         if (collision.gameObject.tag == "SwordCollider")
         {   
             GameObject particlesbreak = Instantiate(breakparticle, this.transform.position , Quaternion.identity);
+            GameObject heartbreak = Instantiate(heart, this.transform.position , Quaternion.identity);
             
-            Instantiate(heart, this.transform.position , Quaternion.identity);
+            //Instantiate(heart, this.transform.position , Quaternion.identity);
             Destroy(particlesbreak, 2);
             Destroy(this.gameObject);
             
